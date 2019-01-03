@@ -17,3 +17,26 @@ function human_filesize($bytes, $decimals = 2)
 function is_image($mimeType) {
     return starts_with($mimeType, 'image/');
 }
+
+/**
+ * 如果为真，返回"checked"
+ */
+function checked($value)
+{
+    return $value ? 'checked' : '';
+}
+
+/**
+ * 返回图片的url
+ */
+function page_image($value = null)
+{
+    if (empty($value)) {
+        $value = config('blog.page_image');
+    }
+    if (! starts_with($value, 'http') && $value[0] !== '/') {
+        $value = config('blog.uploads.webpath') . '/' . $value;
+    }
+
+    return $value;
+}
